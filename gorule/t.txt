@@ -1,0 +1,8 @@
+rule SpeedUp "When testcar is speeding up we increase the speed." salience 10 {
+    when
+        TestCar.SpeedUp == true && TestCar.Speed < TestCar.MaxSpeed
+    then
+        TestCar.Speed = TestCar.Speed + TestCar.SpeedIncrement;
+        DistanceRecord.TotalDistance = DistanceRecord.TotalDistance + TestCar.Speed;
+        Log("Speed increased");
+}
