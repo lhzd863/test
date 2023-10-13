@@ -1,8 +1,9 @@
-rule SpeedUp "When testcar is speeding up we increase the speed." salience 10 {
-    when
-        TestCar.SpeedUp == true && TestCar.Speed < TestCar.MaxSpeed
+
+rule CheckValues "Check the default values" salience 10 {
+    when 
+        MF.IntAttribute == 123 && MF.StringAttribute == "Some string value"
     then
-        TestCar.Speed = TestCar.Speed + TestCar.SpeedIncrement;
-        DistanceRecord.TotalDistance = DistanceRecord.TotalDistance + TestCar.Speed;
-        Log("Speed increased");
+        MF.WhatToSay = MF.GetWhatToSay("Hello Grule");
+		MF.GetWhatToSay("OK");
+        Retract("CheckValues");
 }
